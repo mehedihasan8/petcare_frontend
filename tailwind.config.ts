@@ -9,12 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#00263E",
-        secondary: "#344054",
+        primary: "#f77b19",
+        secondary: "#332E33",
         accent: "#929292",
       },
     },
-    backgroundImage: { heroBackground: "url(/petcare-photo.jpg)" },
+    backgroundImage: {
+      heroBackground: "url(/petcare-photo.jpg)",
+      cardBackground:
+        "radial-gradient(ellipse at top left,#324560,transparent 90%)",
+    },
   },
   plugins: [],
 };

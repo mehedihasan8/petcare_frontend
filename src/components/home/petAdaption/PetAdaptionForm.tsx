@@ -5,7 +5,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const LoginFrom = () => {
+const PetAdaptionForm = () => {
   const router = useRouter();
   const defaultValue = {
     email: "jahidmorol2@gmail.com",
@@ -33,7 +33,6 @@ const LoginFrom = () => {
     //   setIsLoading(false);
     // }
   };
-
   return (
     <Form onFinish={onSubmit} initialValues={defaultValue} layout="vertical">
       <Form.Item
@@ -92,4 +91,4 @@ const LoginFrom = () => {
   );
 };
 
-export default LoginFrom;
+export default PetAdaptionForm;

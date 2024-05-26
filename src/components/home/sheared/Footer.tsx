@@ -11,9 +11,11 @@ const Footer = () => {
             <div className="-mx-4 flex flex-wrap justify-between">
               <div className="px-4 my-4 w-full xl:w-1/5">
                 <Link href="/">
-                  <h1 className="flex items-center gap-2 text-3xl font-extrabold text-primaryColor cursor-pointer pb-3">
-                    <MdPets className="mb-1 text-primary" />
-                    <span className="text-primary">Pet Care</span>
+                  <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
+                    <MdPets className="text-primary" />
+                    <h4 className="text-secondary">
+                      Pet <span className="text-primary">C</span>are
+                    </h4>
                   </h1>
                 </Link>
                 <p className="text-justify">

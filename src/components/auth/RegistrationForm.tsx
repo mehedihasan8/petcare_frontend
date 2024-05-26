@@ -93,7 +93,13 @@ const RegistrationForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" block loading={isLoading}>
+        <Button
+          className="hover:!bg-secondary !bg-primary"
+          type="primary"
+          htmlType="submit"
+          block
+          loading={isLoading}
+        >
           {isLoading ? "Loading..." : "Register"}
         </Button>
       </Form.Item>

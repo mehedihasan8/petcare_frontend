@@ -31,9 +31,9 @@ const PetCard = () => {
           nulla debitis corrupti ullam.
         </p>
         <Link href={"/"}>
-          <button className="group-hover:tracking-[0.1em] transition-all duration-300 font-semibold text-base flex items-center">
+          <button className="group-hover:tracking-[0.1em] transition-all duration-300 font-semibold text-base text-primary flex items-center">
             Explore Now{" "}
-            <FaArrowRightLong className="h-4 w-4 ms-2 translate-x-[-40px] group-hover:translate-x-[0px] opacity-0 group-hover:opacity-100 transition-all duration-400 pt-1" />
+            <FaArrowRightLong className="h-4 w-4 ms-2 translate-x-[-40px] group-hover:translate-x-[0px] opacity-0 group-hover:opacity-100 transition-all duration-400 pt-1 text-secondary" />
           </button>
         </Link>
       </div>

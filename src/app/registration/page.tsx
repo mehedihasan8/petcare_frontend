@@ -8,9 +8,11 @@ const Registration = () => {
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 px-6">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center ">
-          <h1 className="flex items-center gap-2 text-3xl font-extrabold text-primaryColor cursor-pointer pb-3">
-            <MdPets className="mb-1 text-primary" />
-            <span className="text-primary">Pet Care</span>
+          <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
+            <MdPets className="text-primary" />
+            <h4 className="text-secondary">
+              Pet <span className="text-primary">C</span>are
+            </h4>
           </h1>
         </div>
         <h2 className=" text-center text-3xl leading-9 font-semibold text-secondary">

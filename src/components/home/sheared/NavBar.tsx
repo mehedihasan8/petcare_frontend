@@ -13,9 +13,11 @@ const NavBar = () => {
   return (
     <div className="flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10 md:fixed w-full top-0">
       <Link href="/">
-        <h1 className="flex items-center gap-2 text-3xl font-extrabold text-primaryColor cursor-pointer">
-          <MdPets className="mb-1 text-primary" />
-          <span className="text-primary">Pet Care</span>
+        <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
+          <MdPets className="text-primary" />
+          <h4 className="text-secondary">
+            Pet <span className="text-primary">C</span>are
+          </h4>
         </h1>
       </Link>
       <div className="md:flex items-center justify-between w-2/4 hidden">
@@ -29,10 +31,14 @@ const NavBar = () => {
         </ul>
         <div className="flex items-center gap-3">
           <Link href={"/login"}>
-            <Button className="border">login</Button>
+            <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-secondary hover:!text-white">
+              login
+            </Button>
           </Link>
           <Link href={"/registration"}>
-            <Button className="border">Registration</Button>
+            <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-primary hover:!border-primary hover:!text-white">
+              Registration
+            </Button>
           </Link>
         </div>
       </div>
