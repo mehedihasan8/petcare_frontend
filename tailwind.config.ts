@@ -11,8 +11,10 @@ const config: Config = {
       colors: {
         primary: "#00263E",
         secondary: "#344054",
+        accent: "#929292",
       },
     },
+    backgroundImage: { heroBackground: "url(/petcare-photo.jpg)" },
   },
   plugins: [],
 };

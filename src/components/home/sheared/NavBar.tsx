@@ -11,7 +11,7 @@ const NavBar = () => {
   const [isSidebarMenuOpen, setIsSidebarMenuOpen] = useState(false);
 
   return (
-    <div className="flex justify-between items-center p-5 backdrop-blur-md z-10 md:sticky">
+    <div className="flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10 md:fixed w-full top-0">
       <Link href="/">
         <h1 className="flex items-center gap-2 text-3xl font-extrabold text-primaryColor cursor-pointer">
           <MdPets className="mb-1 text-primary" />
