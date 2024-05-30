@@ -1,7 +1,8 @@
+import DashboardLayout from "@/components/layout/DashboardLayout";
 import React from "react";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  return <main>{children}</main>;
+const AdminDashboard = ({ children }: { children: React.ReactNode }) => {
+  return <DashboardLayout>{children}</DashboardLayout>;
 };
 
-export default DashboardLayout;
+export default AdminDashboard;

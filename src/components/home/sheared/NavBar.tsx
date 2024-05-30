@@ -6,12 +6,23 @@ import { FaBars, FaUserAlt } from "react-icons/fa";
 import { MdPets } from "react-icons/md";
 import { Button } from "antd";
 import { GrClose } from "react-icons/gr";
+import NavDropDown from "./NavDropDown";
+import NavSearchBar from "./NavSearchBar";
+// import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 
 const NavBar = () => {
   const [isSidebarMenuOpen, setIsSidebarMenuOpen] = useState(false);
 
+  const [user, setUser] = useState(true);
+  // const isHomePage = router.pathname === "/";
+  // console.log("router----=>", router);
+
   return (
-    <div className="flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10 md:fixed w-full top-0">
+    <div
+      className={`flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10  w-full top-0`}
+      // isHomePage ? "md:fixed" : "md:sticky"
+    >
       <Link href="/">
         <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
           <MdPets className="text-primary" />
@@ -20,27 +31,35 @@ const NavBar = () => {
           </h4>
         </h1>
       </Link>
+      <NavSearchBar />
       <div className="md:flex items-center justify-between w-2/4 hidden">
         <ul className="flex items-center gap-4 ">
           <Link href={"/"}>
             <li>Home</li>
           </Link>
-          <Link href={"/about"}>
+          <Link href={"/about-us"}>
             <li>About</li>
           </Link>
+          <Link href={"/pet-adaption"}>
+            <li>Adaption Request</li>
+          </Link>
         </ul>
-        <div className="flex items-center gap-3">
-          <Link href={"/login"}>
-            <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-secondary hover:!text-white">
-              login
-            </Button>
-          </Link>
-          <Link href={"/registration"}>
-            <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-primary hover:!border-primary hover:!text-white">
-              Registration
-            </Button>
-          </Link>
-        </div>
+        {user ? (
+          <NavDropDown />
+        ) : (
+          <div className="flex items-center gap-3">
+            <Link href={"/login"}>
+              <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-secondary hover:!text-white">
+                login
+              </Button>
+            </Link>
+            <Link href={"/registration"}>
+              <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-primary hover:!border-primary hover:!text-white">
+                Registration
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* mobil device  */}
