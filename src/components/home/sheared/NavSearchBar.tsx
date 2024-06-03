@@ -52,11 +52,11 @@ const NavSearchBar = () => {
         menu={{ items }}
         trigger={["click"]}
       >
-        <a className="" onClick={(e) => e.preventDefault()}>
+        <a className="inline-block" onChange={(e) => e.preventDefault()}>
           <Input
             type="primary"
             placeholder="Search"
-            className="focus:placeholder:!text-primary !bg-transparent !border !border-secondary"
+            className="focus:placeholder:!text-primary !bg-transparent !border !border-secondary "
             onChange={(e) => setSearchText(e.target.value)}
           />
         </a>

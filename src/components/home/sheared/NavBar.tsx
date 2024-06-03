@@ -8,15 +8,16 @@ import { Button } from "antd";
 import { GrClose } from "react-icons/gr";
 import NavDropDown from "./NavDropDown";
 import NavSearchBar from "./NavSearchBar";
-// import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 // import { useRouter } from "next/router";
 
 const NavBar = () => {
+  const user = useAppSelector(selectCurrentUser);
   const [isSidebarMenuOpen, setIsSidebarMenuOpen] = useState(false);
 
-  const [user, setUser] = useState(true);
-  // const isHomePage = router.pathname === "/";
-  // console.log("router----=>", router);
+  // const [user, setUser] = useState(true);
+  console.log("user is exist:----=>", user);
 
   return (
     <div

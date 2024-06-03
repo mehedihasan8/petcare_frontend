@@ -14,17 +14,17 @@ const menuItems = [
   {
     key: 1,
     icon: <RxDashboard />,
-    label: <Link href={"/"}>Dashboard</Link>,
+    label: <Link href={"/dashboard"}>Dashboard</Link>,
   },
   {
     key: 2,
     icon: <MdOutlineInventory2 />,
-    label: <Link href={"/customers"}>Customers</Link>,
+    label: <Link href={"/dashboard/pet-management"}>Pet Management</Link>,
   },
   {
     key: 3,
     icon: <CiSettings />,
-    label: <Link href={"/stores"}>Store</Link>,
+    label: <Link href={"/dashboard/user-management"}>User Management</Link>,
   },
 ];
 

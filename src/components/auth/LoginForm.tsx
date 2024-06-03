@@ -1,37 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { toast } from "sonner";
+import { verifyToken } from "@/utils/verifyToken";
+import { TUser, setUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
 
 const LoginFrom = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [login, { isLoading }] = useLoginMutation();
   const defaultValue = {
-    email: "jahidmorol2@gmail.com",
+    email: "jahidmorol3@gmail.com",
     password: "jahid00@11",
   };
-  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: any) => {
-    console.log("onSubmit--=>", data);
+    const tostId = toast.loading("Logging In");
+    try {
+      const userInfo = {
+        email: data.email,
+        password: data.password,
+      };
 
-    // const toastId = toast.loading("login admin...");
-    // const useObject = {
-    //   email: data?.email,
-    //   password: data?.password,
-    // };
-    // try {
-    //   setIsLoading(true);
-    //   await axios.post("/api/v1/user/auth/login", useObject);
-    //   toast.success("Successfully login admin!", { id: toastId });
-    //   router.push("/");
-    //   setIsLoading(false);
-    // } catch (error) {
-    //   toast.error(error?.response?.data?.message, { id: toastId });
-    // } finally {
-    //   setIsLoading(false);
-    // }
+      const res = await login(userInfo).unwrap();
+      const user = verifyToken(res.data.token) as TUser;
+
+      dispatch(setUser({ user: user, token: res?.data?.token }));
+      toast.success("Logged In", { id: tostId, duration: 2000 });
+      if (user.role === "ADMIN") {
+        router.push("/dashboard");
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      toast.error("something went wrong", { id: tostId, duration: 2000 });
+    }
   };
 
   return (
