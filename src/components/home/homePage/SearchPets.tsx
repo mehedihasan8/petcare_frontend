@@ -1,23 +1,20 @@
 "use client";
 import { TQueryParam } from "@/types/global.type";
 import { Form, Input, Select, Button } from "antd";
-import { useState } from "react";
 
 const { Option } = Select;
 
 type SearchPetsProps = {
-  setParams: React.Dispatch<React.SetStateAction<TQueryParam[] | undefined>>;
+  setParams: React.Dispatch<React.SetStateAction<TQueryParam[]>>;
 };
 
 const SearchPets = ({ setParams }: SearchPetsProps) => {
   // const [searchTerm, setSearchTerm] = useState("");
 
-  // console.log("searchTerm--=>", searchTerm);
-
   const onFinish = (values: any) => {
     console.log("Success:", values);
 
-    const newParams: TQueryParam[] = [];
+    const newParams: TQueryParam[] = [{ name: "limit", value: 3 }];
 
     // if (searchTerm) {
     //   newParams.push({ name: "searchTerm", value: searchTerm });
@@ -47,7 +44,10 @@ const SearchPets = ({ setParams }: SearchPetsProps) => {
         <Form.Item>
           <Input
             onChange={(e) =>
-              setParams([{ name: "searchTerm", value: e.target.value }])
+              setParams([
+                { name: "searchTerm", value: e.target.value },
+                { name: "limit", value: 3 },
+              ])
             }
             placeholder="Text Field"
             type="text"
