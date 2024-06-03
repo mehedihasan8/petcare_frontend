@@ -1,5 +1,5 @@
 export type TPet = {
-  _id: string;
+  id: string;
   name: string;
   species: string;
   breed: string;

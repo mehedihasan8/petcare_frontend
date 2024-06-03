@@ -3,10 +3,11 @@ import img from "../../../../public/petcare-photo.jpg";
 import Link from "next/link";
 
 import { FaArrowRightLong } from "react-icons/fa6";
-import { Button } from "antd";
 import { TPet } from "@/types/pets.type";
 
 const PetCard = ({ pet }: { pet: TPet }) => {
+  console.log("pet---=>", pet);
+
   return (
     <div className="group shadow-md shadow-[#34405441] hover:shadow-lg rounded-[10px] overflow-hidden bg-white text-black">
       <div>
@@ -26,7 +27,7 @@ const PetCard = ({ pet }: { pet: TPet }) => {
           </span>
         </div>
         <p className="line-clamp-3 mb-2 text-accent">{pet.description}</p>
-        <Link className="mt-auto" href={"/"}>
+        <Link className="mt-auto" href={`/pet/${pet?.id}`}>
           <button className="group-hover:tracking-[0.1em] transition-all duration-300 font-semibold text-base text-primary flex items-center">
             Explore Now{" "}
             <FaArrowRightLong className="h-4 w-4 ms-2 translate-x-[-40px] group-hover:translate-x-[0px] opacity-0 group-hover:opacity-100 transition-all duration-400 pt-1 text-secondary" />

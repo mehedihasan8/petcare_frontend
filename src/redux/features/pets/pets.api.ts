@@ -20,7 +20,16 @@ const petsApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    getSinglePet: builder.query({
+      query: (id) => {
+        return {
+          url: `/pets/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllPetsQuery } = petsApi;
+export const { useGetAllPetsQuery, useGetSinglePetQuery } = petsApi;
