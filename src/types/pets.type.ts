@@ -1,5 +1,6 @@
 export type TPet = {
   id: string;
+  photo: string;
   name: string;
   species: string;
   breed: string;

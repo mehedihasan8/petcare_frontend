@@ -5,22 +5,13 @@ import { FiEdit3 } from "react-icons/fi";
 import banner from "/public/Image-wrap.png";
 import photo from "../../../../public/petcare-photo.jpg";
 import Image from "next/image";
+import { useGetMeQuery } from "@/redux/features/user/user.api";
 
 const MyProfile = () => {
-  const items = [
-    {
-      title: "Total Transactions",
-      quantity: `100`,
-    },
-    {
-      title: "Total spend",
-      quantity: `1000`,
-    },
-    {
-      title: "Total Points",
-      quantity: `188`,
-    },
-  ];
+  const { data: user, isFetching } = useGetMeQuery(undefined);
+
+  console.log("user----=>", user);
+
   return (
     <div className="w-[85%] mx-auto pt-10 pb-12">
       <div className="p-4">
@@ -32,60 +23,40 @@ const MyProfile = () => {
           />
         </div>
         <div className="flex gap-4 items-center -m-[2.7rem] w-full mx-auto px-4">
-          <div className="relative h-[170px] w-[170px] rounded-full">
+          <div className="h-[170px] w-[170px] rounded-full">
             <Image
               className="w-full h-full rounded-full object-cover"
-              src={photo}
+              src={user?.data?.photo || photo}
               width={250}
               height={200}
               alt={"image"}
             />
-            {/* <ProfilePictureAction
-              customerId={customerId}
-              setRefetch={setRefetch}
-            /> */}
           </div>
           <div className="mt-5">
             <h2 className="text-2xl font-semibold">
-              {/* {singleCustomersData?.firstName}
-              {singleCustomersData?.lastName} */}
-              Abdul Halim Khan
+              {user?.data?.name}{" "}
+              <Tag bordered={false} color="orange">
+                {user?.data?.role}
+              </Tag>
             </h2>
             <div className="flex items-center gap-4 mt-2">
-              <Tag bordered={false} color="cyan">
-                MAESTRIA
-              </Tag>
-              <p>EXP: 15/04/2025</p>
+              <p>{user?.data?.email}</p>
             </div>
           </div>
           {/* <CardAction /> */}
-        </div>
-      </div>
-
-      <div className="flex items-center gap-4 p-4 mt-8">
-        {items?.map((item, index) => (
-          <div
-            key={index}
-            className="py-5 px-4 rounded-xl bg-white border w-full"
-          >
-            <p className="text-sm font-medium text-[#475467]">{item.title}</p>
-            <h4 className="text-3xl font-semibold  text-primary">
-              {item.quantity}
-            </h4>
-          </div>
-        ))}
-      </div>
-
-      <div className="px-4 mt-5">
-        <div className="flex items-center justify-between border-b-2 pb-4">
-          <h2 className="text-lg font-semibold">Personal Information</h2>
           <Button
             // onClick={}
-
+            className="ml-auto"
             icon={<FiEdit3 size={12} />}
           >
             Edit
           </Button>
+        </div>
+      </div>
+
+      <div className="px-4 mt-16">
+        <div className="flex items-center justify-between border-b-2 pb-4">
+          <h2 className="text-lg font-semibold">Personal Information</h2>
         </div>
         <div className="grid grid-cols-4 gap-5 mt-5 mb-6 p-4 rounded-lg border">
           <div>

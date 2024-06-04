@@ -6,15 +6,17 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { TPet } from "@/types/pets.type";
 
 const PetCard = ({ pet }: { pet: TPet }) => {
-  console.log("pet---=>", pet);
+  // console.log("pet---=>", pet);
 
   return (
     <div className="group shadow-md shadow-[#34405441] hover:shadow-lg rounded-[10px] overflow-hidden bg-white text-black">
       <div>
         <Image
-          className="h-[10rem] mx-auto bg-cover bg-center"
-          src={img}
+          className="h-[10rem] w-full mx-auto bg-cover bg-center"
+          src={pet?.photo || img}
           alt="image"
+          height={160}
+          width={500}
         />
       </div>
       <div className="p-4 h-full">

@@ -33,6 +33,7 @@ const PetDetails = () => {
     species,
     temperament,
     updatedAt,
+    photo,
   } = data.data;
 
   return (
@@ -40,9 +41,11 @@ const PetDetails = () => {
       <div className="relative h-[340px]">
         <div className="w-full h-[200px] md:h-[300px] md:w-1/2 rounded-lg">
           <Image
-            className="h-full w-full object-cover rounded-lg"
-            src={demoImage}
+            className="h-full w-full object-cover object-center rounded-lg"
+            src={photo}
             alt="Winding mountain road"
+            width={500}
+            height={500}
           />
         </div>
         <div className="absolute bottom-0 right-0 bg-secondary bg-cardBackground w-full md:w-[60%] rounded-lg md:rounded-l-md px-5 py-4 md:py-8 mb-5 md:mb-0">

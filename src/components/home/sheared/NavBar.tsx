@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import { FaBars, FaUserAlt } from "react-icons/fa";
@@ -8,20 +8,20 @@ import { Button } from "antd";
 import { GrClose } from "react-icons/gr";
 import NavDropDown from "./NavDropDown";
 import NavSearchBar from "./NavSearchBar";
-import { useAppSelector } from "@/redux/hooks";
-import { selectCurrentUser } from "@/redux/features/auth/authSlice";
-// import { useRouter } from "next/router";
+import { useGetMeQuery } from "@/redux/features/user/user.api";
 
 const NavBar = () => {
-  const user = useAppSelector(selectCurrentUser);
+  // const user = useAppSelector(selectCurrentUser);
+  const { data: user } = useGetMeQuery(undefined);
   const [isSidebarMenuOpen, setIsSidebarMenuOpen] = useState(false);
 
-  // const [user, setUser] = useState(true);
-  console.log("user is exist:----=>", user);
+  // const isHomePage = window.location.pathname === "/";
+
+  // console.log("user is exist:----=>", user);
 
   return (
     <div
-      className={`flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10  w-full top-0`}
+      className={`flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10 md:sticky w-full top-0`}
       // isHomePage ? "md:fixed" : "md:sticky"
     >
       <Link href="/">
@@ -45,8 +45,8 @@ const NavBar = () => {
             <li>Adaption Request</li>
           </Link>
         </ul>
-        {user ? (
-          <NavDropDown />
+        {user?.data ? (
+          <NavDropDown user={user?.data} />
         ) : (
           <div className="flex items-center gap-3">
             <Link href={"/login"}>

@@ -2,25 +2,14 @@
 "use client";
 import { Dropdown, MenuProps } from "antd";
 import Image from "next/image";
-import { useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import userAvatar from "../../../../public/petcare-photo.jpg";
-import { LiaAngleDownSolid, LiaAngleUpSolid } from "react-icons/lia";
 import Link from "next/link";
 import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
-import { useGetMeQuery } from "@/redux/features/user/user.api";
 
-const NavDropDown = () => {
+const NavDropDown = ({ user }: { user: any }) => {
   const dispatch = useAppDispatch();
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const { data: user } = useGetMeQuery(undefined);
-
-  console.log("data from drop---=>", user);
-
-  const handleDropdownVisibleChange = (visible: any) => {
-    setDropdownVisible(visible);
-  };
 
   const handelLogOut = async () => {
     dispatch(logout());
@@ -32,7 +21,7 @@ const NavDropDown = () => {
         <Link href="/my-profile">
           <div className="p-2 flex items-center !w-[235px]">
             <Image
-              src={userAvatar}
+              src={user?.photo || userAvatar}
               width={40}
               height={40}
               alt="Profile"
@@ -40,10 +29,10 @@ const NavDropDown = () => {
             />
             <div className="ml-4">
               <h2 className="text-sm text-primary font-semibold">
-                {user?.data?.name}
+                {user?.name}
               </h2>
               <p className="text-sm whitespace-normal text-wrap break-words ">
-                {user?.data?.email}
+                {user?.email}
               </p>
             </div>
           </div>
@@ -74,28 +63,18 @@ const NavDropDown = () => {
   // }
 
   return (
-    <Dropdown
-      visible={dropdownVisible}
-      onVisibleChange={handleDropdownVisibleChange}
-      menu={{ items }}
-      trigger={["click"]}
-    >
+    <Dropdown menu={{ items }} trigger={["click"]}>
       <a className="" onClick={(e) => e.preventDefault()}>
         <div className="flex items-center justify-end">
           {/* <IoIosNotificationsOutline className="w-8 h-8 text-secondary" /> */}
           <Image
-            src={userAvatar}
+            src={user?.photo || userAvatar}
             alt="Profile"
             width={32}
             height={32}
             className="w-[32px] h-[32px] object-cover rounded-full mr-3"
           />
-          <h2 className="text-sm text-secondary mr-2">{user?.data?.name}</h2>
-          {dropdownVisible ? (
-            <LiaAngleUpSolid className="w-4 h-4 text-primary" />
-          ) : (
-            <LiaAngleDownSolid className="w-4 h-4 text-primary" />
-          )}
+          <h2 className="text-sm text-primary mr-2">{user?.name}</h2>
         </div>
       </a>
     </Dropdown>
