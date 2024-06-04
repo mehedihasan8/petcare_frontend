@@ -1,16 +1,37 @@
 "use client";
-import { Button, Tag } from "antd";
+import { Button, Spin, Tabs, Tag } from "antd";
 import React from "react";
 import { FiEdit3 } from "react-icons/fi";
 import banner from "/public/Image-wrap.png";
 import photo from "../../../../public/petcare-photo.jpg";
 import Image from "next/image";
 import { useGetMeQuery } from "@/redux/features/user/user.api";
+import ChangePassword from "./ChangePassword";
+import EditInformation from "./EditInformation";
 
 const MyProfile = () => {
   const { data: user, isFetching } = useGetMeQuery(undefined);
 
-  console.log("user----=>", user);
+  const items = [
+    {
+      key: "1",
+      label: "Edit Information",
+      children: <EditInformation user={user?.data} />,
+    },
+    {
+      key: "2",
+      label: "Change Password",
+      children: <ChangePassword />,
+    },
+  ];
+
+  if (isFetching) {
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-[85%] mx-auto pt-10 pb-12">
@@ -55,31 +76,13 @@ const MyProfile = () => {
       </div>
 
       <div className="px-4 mt-16">
-        <div className="flex items-center justify-between border-b-2 pb-4">
-          <h2 className="text-lg font-semibold">Personal Information</h2>
+        <div className="flex items-center justify-center border-b-2 pb-4">
+          <h2 className="text-2xl font-semibold text-center">
+            Personal Information
+          </h2>
         </div>
-        <div className="grid grid-cols-4 gap-5 mt-5 mb-6 p-4 rounded-lg border">
-          <div>
-            <h4 className="font-semibold">Email</h4>
-            <p>jahid2@gmail.com</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">Phone Number</h4>
-            <p>01758633</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">Date of Birth</h4>
-
-            <p>2-12-2003</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">Gender</h4>
-            <p className="uppercase">Male</p>
-          </div>
-          <div className="col-span-2">
-            <h4 className="font-semibold">Location</h4>
-            <p>Briad adfa asdfadf</p>
-          </div>
+        <div className="mt-5">
+          <Tabs defaultActiveKey="1" type="card" items={items} />
         </div>
       </div>
     </div>

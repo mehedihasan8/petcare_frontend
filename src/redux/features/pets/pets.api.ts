@@ -29,7 +29,21 @@ const petsApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    updateSinglePet: builder.mutation({
+      query: (args) => {
+        return {
+          url: `/pets/${args.id}`,
+          method: "PUT",
+          body: args.data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllPetsQuery, useGetSinglePetQuery } = petsApi;
+export const {
+  useGetAllPetsQuery,
+  useGetSinglePetQuery,
+  useUpdateSinglePetMutation,
+} = petsApi;

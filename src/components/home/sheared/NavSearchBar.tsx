@@ -10,9 +10,9 @@ const NavSearchBar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
 
-  const handleDropdownVisibleChange = (visible: any) => {
-    setDropdownVisible(visible);
-  };
+  // const handleDropdownVisibleChange = (visible: any) => {
+  //   setDropdownVisible(visible);
+  // };
 
   const items: MenuProps["items"] = [
     {
@@ -47,8 +47,8 @@ const NavSearchBar = () => {
   return (
     <div>
       <Dropdown
-        visible={dropdownVisible}
-        onVisibleChange={handleDropdownVisibleChange}
+        // visible={dropdownVisible}
+        // onVisibleChange={handleDropdownVisibleChange}
         menu={{ items }}
         trigger={["click"]}
       >

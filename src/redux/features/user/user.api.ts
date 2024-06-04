@@ -7,8 +7,32 @@ const userApi = baseApi.injectEndpoints({
         url: "/profile",
         method: "GET",
       }),
+      providesTags: ["profile"],
+    }),
+    updateUserInformation: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/profile`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["profile"],
+    }),
+    changePassword: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/profile/pass-change`,
+          method: "PUT",
+          body: data,
+        };
+      },
     }),
   }),
 });
 
-export const { useGetMeQuery } = userApi;
+export const {
+  useGetMeQuery,
+  useUpdateUserInformationMutation,
+  useChangePasswordMutation,
+} = userApi;
