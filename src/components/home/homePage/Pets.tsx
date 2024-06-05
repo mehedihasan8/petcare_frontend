@@ -25,9 +25,9 @@ const Pets = () => {
     ]);
   };
 
-  console.log("params--=>", params);
+  // console.log("params--=>", params);
   // console.log("petsData--=>", pets);
-  console.log("meta--=>", meta);
+  // console.log("meta--=>", meta);
 
   return (
     <div className="max-w-[1000px] mx-auto py-10 md:py-20">

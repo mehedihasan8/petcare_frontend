@@ -19,6 +19,8 @@ const petsApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+
+      providesTags: ["pets"],
     }),
 
     getSinglePet: builder.query({
@@ -38,6 +40,28 @@ const petsApi = baseApi.injectEndpoints({
           body: args.data,
         };
       },
+      invalidatesTags: ["pets"],
+    }),
+
+    deleteSinglePet: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/pets/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["pets"],
+    }),
+
+    addPet: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/pets`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["pets"],
     }),
   }),
 });
@@ -46,4 +70,6 @@ export const {
   useGetAllPetsQuery,
   useGetSinglePetQuery,
   useUpdateSinglePetMutation,
+  useAddPetMutation,
+  useDeleteSinglePetMutation,
 } = petsApi;

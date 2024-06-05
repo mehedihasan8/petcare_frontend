@@ -3,7 +3,6 @@ import { useGetSinglePetQuery } from "@/redux/features/pets/pets.api";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import React from "react";
-import demoImage from "../../../../../public/petcare-photo.jpg";
 import { Spin } from "antd";
 
 const PetDetails = () => {
