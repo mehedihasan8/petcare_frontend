@@ -11,12 +11,12 @@ const Footer = () => {
             <div className="-mx-4 flex flex-wrap justify-between">
               <div className="px-4 my-4 w-full xl:w-1/5">
                 <Link href="/">
-                  <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
+                  <div className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
                     <MdPets className="text-primary" />
                     <h4 className="text-secondary">
                       Pet <span className="text-primary">C</span>are
                     </h4>
-                  </h1>
+                  </div>
                 </Link>
                 <p className="text-justify">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
@@ -32,7 +32,7 @@ const Footer = () => {
                     Company
                   </h2>
                 </div>
-                <ul className="leading-8">
+                {/* <ul className="leading-8">
                   <li>
                     <a href="#" className="hover:text-secondary">
                       About Us
@@ -40,7 +40,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="#" className="hover:text-secondary">
-                      Terms &amp; Conditions
+                      Terms & amp Conditions
                     </a>
                   </li>
                   <li>
@@ -53,7 +53,7 @@ const Footer = () => {
                       Contact Us
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
               <div className="px-4 my-4 w-full sm:w-auto">
                 <div>
@@ -61,7 +61,7 @@ const Footer = () => {
                     Blog
                   </h2>
                 </div>
-                <ul className="leading-8">
+                {/* <ul className="leading-8">
                   <li>
                     <a href="#" className="hover:text-secondary">
                       Getting Started With HTML and CSS
@@ -87,7 +87,7 @@ const Footer = () => {
                       See More
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
               <div className="px-4 my-4 w-full sm:w-auto xl:w-1/5">
                 <div>

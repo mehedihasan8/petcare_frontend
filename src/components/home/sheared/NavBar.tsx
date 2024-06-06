@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
+import "./NavBar.css";
 import Link from "next/link";
 import { FaBars, FaUserAlt } from "react-icons/fa";
 import { MdPets } from "react-icons/md";
@@ -9,11 +9,18 @@ import { GrClose } from "react-icons/gr";
 import NavDropDown from "./NavDropDown";
 import NavSearchBar from "./NavSearchBar";
 import { useGetMeQuery } from "@/redux/features/user/user.api";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 
 const NavBar = () => {
-  // const user = useAppSelector(selectCurrentUser);
+  const currentUser = useAppSelector(selectCurrentUser);
   const { data: user } = useGetMeQuery(undefined);
   const [isSidebarMenuOpen, setIsSidebarMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // const isHomePage = window.location.pathname === "/";
 
@@ -25,41 +32,50 @@ const NavBar = () => {
       // isHomePage ? "md:fixed" : "md:sticky"
     >
       <Link href="/">
-        <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
+        <div className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer">
           <MdPets className="text-primary" />
           <h4 className="text-secondary">
             Pet <span className="text-primary">C</span>are
           </h4>
-        </h1>
+        </div>
       </Link>
       <NavSearchBar />
       <div className="md:flex items-center justify-between w-2/4 hidden">
         <ul className="flex items-center gap-4 ">
-          <Link href={"/"}>
-            <li>Home</li>
-          </Link>
-          <Link href={"/about-us"}>
-            <li>About</li>
-          </Link>
-          <Link href={"/pet-adaption"}>
-            <li>Adaption Request</li>
-          </Link>
+          <li>
+            <Link className="nav-item" href={"/"}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-item" href={"/about-us"}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href={"/pet-adaption"}>All Pets</Link>
+          </li>
         </ul>
-        {user?.data ? (
-          <NavDropDown user={user?.data} />
+        {isMounted ? (
+          currentUser ? (
+            <NavDropDown user={user?.data} />
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link href="/login">
+                <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-secondary hover:!text-white">
+                  Login
+                </Button>
+              </Link>
+              <Link href="/registration">
+                <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-primary hover:!border-primary hover:!text-white">
+                  Registration
+                </Button>
+              </Link>
+            </div>
+          )
         ) : (
-          <div className="flex items-center gap-3">
-            <Link href={"/login"}>
-              <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-secondary hover:!text-white">
-                login
-              </Button>
-            </Link>
-            <Link href={"/registration"}>
-              <Button className="!bg-transparent !border !border-secondary !text-secondary hover:!bg-primary hover:!border-primary hover:!text-white">
-                Registration
-              </Button>
-            </Link>
-          </div>
+          // Render a placeholder during the initial render
+          <div style={{ visibility: "hidden" }}>Loading...</div>
         )}
       </div>
 

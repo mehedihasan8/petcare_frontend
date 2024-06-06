@@ -1,34 +1,34 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { RxDashboard } from "react-icons/rx";
-import { MdOutlineInventory2, MdPets } from "react-icons/md";
-import { CiSettings } from "react-icons/ci";
+import { MdPets } from "react-icons/md";
 
 // Ant Design Component
 import { Layout, Menu } from "antd";
 import NavDropDown from "../home/sheared/NavDropDown";
+import { useGetMeQuery } from "@/redux/features/user/user.api";
+import { useAppSelector } from "@/redux/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { verifyToken } from "@/utils/verifyToken";
+import { sidebarMenuItems } from "./SidebarMenu";
 const { Header, Content, Sider } = Layout;
 
-const menuItems = [
-  {
-    key: 1,
-    icon: <RxDashboard />,
-    label: <Link href={"/dashboard"}>Dashboard</Link>,
-  },
-  {
-    key: 2,
-    icon: <MdOutlineInventory2 />,
-    label: <Link href={"/dashboard/pet-management"}>Pet Management</Link>,
-  },
-  {
-    key: 3,
-    icon: <CiSettings />,
-    label: <Link href={"/dashboard/user-management"}>User Management</Link>,
-  },
-];
-
 const DashboardLayout = ({ children }: React.PropsWithChildren) => {
+  const token = useAppSelector(useCurrentToken);
+  let user: any;
+  if (token) {
+    user = verifyToken(token);
+  }
+  const { data: userData } = useGetMeQuery(undefined);
+
+  let sidebarItems: any = [];
+  if (user?.role === "ADMIN") {
+    sidebarItems = sidebarMenuItems.admin;
+  }
+  if (user?.role === "CUSTOMER") {
+    sidebarItems = sidebarMenuItems.customer;
+  }
+
   return (
     <Layout>
       <Sider
@@ -44,26 +44,26 @@ const DashboardLayout = ({ children }: React.PropsWithChildren) => {
         width={200}
       >
         <Link href="/">
-          <h1 className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer pl-[22px] py-2">
+          <div className="flex items-center gap-1 text-3xl font-extrabold text-primaryColor cursor-pointer pl-[22px] py-2">
             <MdPets className="text-primary" />
             <h4 className="text-secondary">
               Pet <span className="text-primary">C</span>are
             </h4>
-          </h1>
+          </div>
         </Link>
 
         <Menu
           mode="inline"
           theme="light"
-          items={menuItems}
-          className="!min-h-[calc(100vh-60px)]"
+          items={sidebarItems}
+          className="!min-h-[calc(100vh-60px)] !pt-2"
         />
       </Sider>
 
       <Layout>
         <Header className="!px-4 sticky top-0 !bg-white !h-[60px] flex flex-col justify-center text-right border-b z-50">
           <div className="flex flex-col items-center ms-auto text-right">
-            <NavDropDown />
+            <NavDropDown user={userData?.data} />
           </div>
         </Header>
         <Content>

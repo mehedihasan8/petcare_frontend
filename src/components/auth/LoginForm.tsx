@@ -32,11 +32,7 @@ const LoginFrom = () => {
 
       dispatch(setUser({ user: user, token: res?.data?.token }));
       toast.success("Logged In", { id: tostId, duration: 2000 });
-      if (user.role === "ADMIN") {
-        router.push("/dashboard");
-      } else {
-        router.push("/");
-      }
+      router.push("/");
     } catch (error) {
       toast.error("something went wrong", { id: tostId, duration: 2000 });
     }

@@ -25,8 +25,7 @@ const PetDataWithFilter = () => {
   const meta = data?.data?.meta;
 
   const [open, setOpen] = useState(false);
-  const [pet, setPet] = useState<TPet | null>(null);
-  const [searchText, setSearchText] = useState("");
+  const [pet, setPet] = useState<TPet | undefined>(undefined);
 
   const handlePaginationChange = (page: number) => {
     setParams((prevParams) => [
@@ -115,7 +114,7 @@ const PetDataWithFilter = () => {
       render: (pet: TPet) => (
         <div className="flex items-center gap-2">
           <button
-            className="px-4 py-1.5 bg-white border-[1.5px] rounded-lg"
+            className="px-4 py-1.5 bg-white border-[1.5px] rounded-lg hover:bg-secondary hover:text-white"
             onClick={() => {
               setPet(pet);
               setOpen(true);
@@ -124,7 +123,7 @@ const PetDataWithFilter = () => {
             <FiEdit2 fontSize={20} />
           </button>
           <button
-            className="px-4 py-1.5 bg-white border-[1.5px] rounded-lg"
+            className="px-4 py-1.5 bg-white border-[1.5px] rounded-lg hover:bg-red-500"
             onClick={() => handleDelete(pet.id)}
           >
             <AiOutlineDelete fontSize={20} />
@@ -136,7 +135,7 @@ const PetDataWithFilter = () => {
 
   return (
     <div>
-      <UpdatePetModal open={open} setOpen={setOpen} pet={pet!} />
+      <UpdatePetModal open={open} setOpen={setOpen} pet={pet} />
       {/* <div className="w-96">
         <Input
           type="primary"

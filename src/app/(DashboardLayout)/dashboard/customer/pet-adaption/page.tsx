@@ -1,4 +1,4 @@
-import PetAdaptionForm from "@/components/home/petAdaption/PetAdaptionForm";
+import PetAdaptionForm from "./PetAdaptionForm";
 
 const PetAdaption = () => {
   return (

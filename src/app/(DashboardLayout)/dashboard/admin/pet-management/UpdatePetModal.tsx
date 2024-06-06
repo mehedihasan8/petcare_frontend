@@ -1,6 +1,6 @@
 import { TPet } from "@/types/pets.type";
 import { Col, Form, Input, Modal, Row, Select } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "sonner";
 import { TPetInventoryProps } from "./AddPetModal";
 import { useUpdateSinglePetMutation } from "@/redux/features/pets/pets.api";
@@ -32,9 +32,19 @@ const UpdatePetModal = ({ open, setOpen, pet }: TPetInventoryProps) => {
     }
   };
 
+  useEffect(() => {
+    form.resetFields();
+    form.setFieldsValue(pet);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pet]);
+
+  // if (pet && Object.keys(pet).length < 0) {
+  //   return <p>loading..........</p>;
+  // }
+
   return (
     <Modal
-      title="Add new Pet"
+      title="Update This Pet"
       centered
       open={open}
       onOk={() => setOpen(false)}
@@ -44,7 +54,12 @@ const UpdatePetModal = ({ open, setOpen, pet }: TPetInventoryProps) => {
       <div>
         <Row>
           <Col span={24}>
-            <Form initialValues={pet} layout="vertical" onFinish={onSubmit}>
+            <Form
+              form={form}
+              initialValues={pet}
+              layout="vertical"
+              onFinish={onSubmit}
+            >
               <Row gutter={8}>
                 <Col span={24}>
                   <Form.Item name="name" label="Pet Name">
@@ -201,12 +216,12 @@ const UpdatePetModal = ({ open, setOpen, pet }: TPetInventoryProps) => {
               <Row>
                 <div className="flex items-center justify-end w-full mb-2">
                   <div className="flex items-center gap-2">
-                    <h1
+                    <span
                       className="cursor-pointer border px-4 py-1.5 font-medium rounded-lg"
                       onClick={() => setOpen(false)}
                     >
                       Close
-                    </h1>
+                    </span>
                     <button
                       className="cursor-pointer hover:bg-gray-950 px-4 py-1.5 bg-primary font-medium text-white rounded-lg"
                       type="submit"

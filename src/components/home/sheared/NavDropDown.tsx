@@ -7,6 +7,10 @@ import userAvatar from "../../../../public/petcare-photo.jpg";
 import Link from "next/link";
 import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
+import { RxDashboard } from "react-icons/rx";
+import { GoHome } from "react-icons/go";
+import { IoIosArrowDown } from "react-icons/io";
+import "./NavBar.css";
 
 const NavDropDown = ({ user }: { user: any }) => {
   const dispatch = useAppDispatch();
@@ -14,6 +18,14 @@ const NavDropDown = ({ user }: { user: any }) => {
   const handelLogOut = async () => {
     dispatch(logout());
   };
+
+  let userRole;
+  if (user?.role === "ADMIN") {
+    userRole = "admin";
+  }
+  if (user?.role === "CUSTOMER") {
+    userRole = "customer";
+  }
 
   const items: MenuProps["items"] = [
     {
@@ -45,10 +57,35 @@ const NavDropDown = ({ user }: { user: any }) => {
     },
     {
       label: (
-        <h2
-          // onClick={() => handelLogOut()}
-          className="p-2 flex items-center gap-2 text-base text-secondary !w-[235px]"
-        >
+        <Link href={"/"}>
+          <h2 className="px-2 py-1 flex items-center gap-2 text-base text-secondary !w-[235px]">
+            <GoHome className="text-secondary pt-[1px] w-[1.1rem] h-[1.2rem]" />
+            Home
+          </h2>
+        </Link>
+      ),
+      key: "home",
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: (
+        <Link href={`/dashboard/${userRole}`}>
+          <h2 className="px-2 py-1 flex items-center gap-2 text-base text-secondary !w-[235px]">
+            <RxDashboard className="text-secondary pt-[1.5px] w-[1.1rem] h-[1.1rem]" />
+            Dashboard
+          </h2>
+        </Link>
+      ),
+      key: "dashboard",
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: (
+        <h2 className="px-2 py-1 flex items-center gap-2 text-base text-secondary !w-[235px]">
           <FiLogOut className="text-secondary pt-[1px] w-[1.1rem] h-[1.1rem]" />{" "}
           Logout
         </h2>
@@ -64,8 +101,8 @@ const NavDropDown = ({ user }: { user: any }) => {
 
   return (
     <Dropdown menu={{ items }} trigger={["click"]}>
-      <a className="" onClick={(e) => e.preventDefault()}>
-        <div className="flex items-center justify-end">
+      <div className="" onClick={(e) => e.preventDefault()}>
+        <div className="flex items-center justify-end cursor-pointer">
           {/* <IoIosNotificationsOutline className="w-8 h-8 text-secondary" /> */}
           <Image
             src={user?.photo || userAvatar}
@@ -74,9 +111,10 @@ const NavDropDown = ({ user }: { user: any }) => {
             height={32}
             className="w-[32px] h-[32px] object-cover rounded-full mr-3"
           />
-          <h2 className="text-sm text-primary mr-2">{user?.name}</h2>
+          <h2 className="text-base text-secondary mr-2">{user?.name}</h2>
+          <IoIosArrowDown className="text-secondary mt-1" fontSize={20} />
         </div>
-      </a>
+      </div>
     </Dropdown>
   );
 };

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const PetAdaptionForm = () => {
-  const router = useRouter();
   const defaultValue = {
     email: "jahidmorol2@gmail.com",
     password: "jahid00@11",
