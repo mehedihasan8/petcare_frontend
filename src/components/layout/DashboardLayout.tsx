@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { MdPets } from "react-icons/md";
 
 // Ant Design Component
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Spin } from "antd";
 import NavDropDown from "../home/sheared/NavDropDown";
 import { useGetMeQuery } from "@/redux/features/user/user.api";
 import { useAppSelector } from "@/redux/hooks";
@@ -14,12 +14,24 @@ import { sidebarMenuItems } from "./SidebarMenu";
 const { Header, Content, Sider } = Layout;
 
 const DashboardLayout = ({ children }: React.PropsWithChildren) => {
-  const token = useAppSelector(useCurrentToken);
-  let user: any;
-  if (token) {
-    user = verifyToken(token);
-  }
   const { data: userData } = useGetMeQuery(undefined);
+  const token = useAppSelector(useCurrentToken);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    if (token) {
+      const verifiedUser = verifyToken(token);
+      setUser(verifiedUser);
+    }
+  }, [token]);
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   let sidebarItems: any = [];
   if (user?.role === "ADMIN") {

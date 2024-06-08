@@ -1,12 +1,8 @@
 import Link from "next/link";
-import { CiSettings } from "react-icons/ci";
 import { FaHouseUser } from "react-icons/fa";
-import {
-  MdDashboard,
-  MdOutlineInventory2,
-  MdOutlinePets,
-} from "react-icons/md";
-import { RxDashboard } from "react-icons/rx";
+import { IoSettings } from "react-icons/io5";
+import { MdDashboard, MdOutlinePets } from "react-icons/md";
+import { TbHexagonPlusFilled } from "react-icons/tb";
 
 const admin = [
   {
@@ -36,23 +32,44 @@ const admin = [
       </Link>
     ),
   },
+  {
+    key: 4,
+    icon: <IoSettings className="w-5 h-5 !text-secondary" />,
+    label: (
+      <Link className="text-base " href={"/dashboard/admin/settings"}>
+        Settings
+      </Link>
+    ),
+  },
 ];
 
 const customer = [
   {
     key: 1,
-    icon: <RxDashboard />,
-    label: <Link href={"/dashboard/customer"}>Dashboard</Link>,
+    icon: <MdDashboard className="w-5 h-5 !text-secondary" />,
+    label: (
+      <Link className="text-base " href={"/dashboard/customer"}>
+        Dashboard
+      </Link>
+    ),
   },
   {
     key: 2,
-    icon: <MdOutlineInventory2 />,
-    label: <Link href={"/dashboard/pet-management"}>Pet Management</Link>,
+    icon: <TbHexagonPlusFilled className="w-5 h-5 !text-secondary" />,
+    label: (
+      <Link className="text-base " href={"/dashboard/customer/pet-adaption"}>
+        Adaption Request
+      </Link>
+    ),
   },
   {
     key: 3,
-    icon: <CiSettings />,
-    label: <Link href={"/dashboard/user-management"}>User Management</Link>,
+    icon: <IoSettings className="w-5 h-5 !text-secondary" />,
+    label: (
+      <Link className="text-base " href={"/dashboard/customer/settings"}>
+        Settings
+      </Link>
+    ),
   },
 ];
 
