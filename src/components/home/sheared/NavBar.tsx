@@ -22,10 +22,6 @@ const NavBar = () => {
     setIsMounted(true);
   }, []);
 
-  // const isHomePage = window.location.pathname === "/";
-
-  // console.log("user is exist:----=>", user);
-
   return (
     <div
       className={`flex justify-between items-center px-5 py-2 backdrop-blur-sm z-10 md:sticky w-full top-0`}
@@ -39,8 +35,8 @@ const NavBar = () => {
           </h4>
         </div>
       </Link>
-      <NavSearchBar />
-      <div className="md:flex items-center justify-between w-2/4 hidden">
+      {/* <NavSearchBar /> */}
+      <div className="md:flex items-center justify-between w-[55%] hidden">
         <ul className="flex items-center gap-4 ">
           <li>
             <Link className="nav-item" href={"/"}>
@@ -49,11 +45,8 @@ const NavBar = () => {
           </li>
           <li>
             <Link className="nav-item" href={"/about-us"}>
-              About
+              About Us
             </Link>
-          </li>
-          <li>
-            <Link href={"/pet-adaption"}>All Pets</Link>
           </li>
         </ul>
         {isMounted ? (

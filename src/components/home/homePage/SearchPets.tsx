@@ -49,7 +49,7 @@ const SearchPets = ({ setParams }: SearchPetsProps) => {
             onChange={(e) =>
               setParams([
                 { name: "searchTerm", value: e.target.value },
-                { name: "limit", value: 3 },
+                { name: "limit", value: 9 },
               ])
             }
             placeholder="Search"

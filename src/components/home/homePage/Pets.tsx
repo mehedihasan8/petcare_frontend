@@ -11,7 +11,7 @@ import { Pagination, Spin } from "antd";
 
 const Pets = () => {
   const [params, setParams] = useState<TQueryParam[]>([
-    { name: "limit", value: 3 },
+    { name: "limit", value: 9 },
   ]);
   const { data, isFetching } = useGetAllPetsQuery(params);
 

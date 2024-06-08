@@ -9,7 +9,7 @@ const PetCard = ({ pet }: { pet: TPet }) => {
   // console.log("pet---=>", pet);
 
   return (
-    <div className="group shadow-md shadow-[#34405441] hover:shadow-lg rounded-[10px] overflow-hidden bg-white text-black">
+    <div className="group flex flex-col shadow-md shadow-[#34405441] hover:shadow-lg rounded-[10px] overflow-hidden bg-white text-black">
       <div>
         <Image
           className="h-[10rem] w-full mx-auto bg-cover bg-center"
@@ -19,7 +19,7 @@ const PetCard = ({ pet }: { pet: TPet }) => {
           width={500}
         />
       </div>
-      <div className="p-4 h-full">
+      <div className="p-4 flex-grow flex flex-col">
         <div className="flex justify-between pb-4">
           <Link href="/">
             <h1 className="font-bold text-xl">{pet?.name}</h1>
@@ -28,7 +28,7 @@ const PetCard = ({ pet }: { pet: TPet }) => {
             {"(" + pet.species + ")"}
           </span>
         </div>
-        <p className="line-clamp-3 mb-2 text-accent">{pet.description}</p>
+        <p className="line-clamp-3 mb-1 text-accent">{pet.description}</p>
         <Link className="mt-auto" href={`/pet/${pet?.id}`}>
           <button className="group-hover:tracking-[0.1em] transition-all duration-300 font-semibold text-base text-primary flex items-center">
             Explore Now{" "}
