@@ -14,10 +14,10 @@ const LoginFrom = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
-  const defaultValue = {
-    email: "jahidmorol3@gmail.com",
-    password: "jahid00@11",
-  };
+  // const defaultValue = {
+  //   email: "jahidmorol3@gmail.com",
+  //   password: "jahid00@11",
+  // };
 
   const setAccessTokenCookie = (token: string): void => {
     document.cookie = `accessToken=${token}; path=/; secure; SameSite=Strict`;
@@ -44,7 +44,7 @@ const LoginFrom = () => {
   };
 
   return (
-    <Form onFinish={onSubmit} initialValues={defaultValue} layout="vertical">
+    <Form onFinish={onSubmit} layout="vertical">
       <Form.Item
         label="Email address"
         name="email"
