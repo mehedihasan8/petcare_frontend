@@ -23,6 +23,24 @@ const adaptionApi = baseApi.injectEndpoints({
       providesTags: ["adaption"],
     }),
 
+    myAdoptionRequest: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/adoption-requests/my",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
+
     addAdaptionRequest: builder.mutation({
       query: (data) => ({
         url: "/adoption-requests",
@@ -49,4 +67,5 @@ export const {
   useAddAdaptionRequestMutation,
   useGetAdoptionRequestQuery,
   useUpdateAdaptionRequestStatusMutation,
+  useMyAdoptionRequestQuery,
 } = adaptionApi;

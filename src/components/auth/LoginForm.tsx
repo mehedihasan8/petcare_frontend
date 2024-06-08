@@ -19,6 +19,10 @@ const LoginFrom = () => {
     password: "jahid00@11",
   };
 
+  const setAccessTokenCookie = (token: string): void => {
+    document.cookie = `accessToken=${token}; path=/; secure; SameSite=Strict`;
+  };
+
   const onSubmit = async (data: any) => {
     const tostId = toast.loading("Logging In");
     try {
@@ -30,6 +34,7 @@ const LoginFrom = () => {
       const res = await login(userInfo).unwrap();
       const user = verifyToken(res.data.token) as TUser;
 
+      setAccessTokenCookie(res?.data?.token);
       dispatch(setUser({ user: user, token: res?.data?.token }));
       toast.success("Logged In", { id: tostId, duration: 2000 });
       router.push("/");

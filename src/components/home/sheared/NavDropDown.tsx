@@ -11,12 +11,20 @@ import { RxDashboard } from "react-icons/rx";
 import { GoHome } from "react-icons/go";
 import { IoIosArrowDown } from "react-icons/io";
 import "./NavBar.css";
+import { useRouter } from "next/navigation";
+
+export const deleteCookie = (name: string) => {
+  document.cookie = `${name}=; Max-Age=-99999999;`;
+};
 
 const NavDropDown = ({ user }: { user: any }) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handelLogOut = async () => {
+    deleteCookie("accessToken");
     dispatch(logout());
+    router.push("/");
   };
 
   let userRole;

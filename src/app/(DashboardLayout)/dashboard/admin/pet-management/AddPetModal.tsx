@@ -300,7 +300,7 @@ const AddPetModal = ({ open, setOpen }: TPetInventoryProps) => {
                     className="cursor-pointer hover:bg-gray-950 px-4 py-1.5 bg-primary font-medium text-white rounded-lg"
                     type="submit"
                   >
-                    Save Offer
+                    Add Pet
                   </button>
                 </div>
               </div>

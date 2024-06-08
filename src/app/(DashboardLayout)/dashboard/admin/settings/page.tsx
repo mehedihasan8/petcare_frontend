@@ -36,7 +36,7 @@ const SettingAdmin = () => {
           Personal Information
         </h2>
       </div>
-      <div className="mt-5 px-10">
+      <div className="mt-5 pr-10">
         <Tabs defaultActiveKey="1" type="card" items={items} />
       </div>
     </div>

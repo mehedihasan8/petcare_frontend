@@ -22,6 +22,7 @@ const petsApi = baseApi.injectEndpoints({
 
       providesTags: ["pets"],
     }),
+    
 
     getSinglePet: builder.query({
       query: (id) => {

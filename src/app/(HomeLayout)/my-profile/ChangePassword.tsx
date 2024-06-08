@@ -130,7 +130,7 @@ const ChangePassword = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex justify-center py-1.5 px-4 border border-transparent text-sm rounded-md text-white bg-primary hover:bg-primary focus:outline-none focus:bg-primary focus:shadow-outline-indigo active:bg-primary font-semibold"
+                  className="flex justify-center py-1.5 px-16 border border-transparent text-sm rounded-md text-white bg-primary hover:bg-primary focus:outline-none focus:bg-primary focus:shadow-outline-indigo active:bg-primary font-semibold"
                 >
                   Save
                 </button>

@@ -4,7 +4,7 @@ import {
   useGetAllPetsQuery,
 } from "@/redux/features/pets/pets.api";
 import { TPet } from "@/types/pets.type";
-import { Image, Input, Pagination, Table, TableProps } from "antd";
+import { Image, Pagination, Table, TableProps } from "antd";
 import React, { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
