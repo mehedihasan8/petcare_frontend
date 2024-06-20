@@ -67,9 +67,9 @@ const MyAdaptionWithFilter = () => {
       key: "status",
       render: (record: any) => {
         return (
-          <div className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
+          <div className="border flex items-center justify-center gap-1.5 border-[#E1E4EA] rounded-md py-1 capitalize text-xs font-medium text-secondary">
             <span
-              className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 ${
+              className={`w-2 h-2 rounded-full  ${
                 record?.status === "APPROVED" ? "bg-teal-600" : "bg-red-500"
               }`}
             ></span>

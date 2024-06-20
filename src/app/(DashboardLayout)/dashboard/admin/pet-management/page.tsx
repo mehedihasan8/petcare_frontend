@@ -13,12 +13,16 @@ const PetManagement = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between p-2 mb-4 border-b-2">
+      <div className="flex items-center justify-between px-2 py-4 mb-4 border-b-2">
         <h2 className="text-2xl font-bold">Pet Management</h2>
         <AddPetModal open={open} setOpen={setOpen} />
-        <Button onClick={modalOpen} icon={<FaPlus size={12} />}>
+        <button
+          className="flex items-center gap-2 px-4 py-2 bg-secondary text-white hover:transition-all ease-in-out duration-500 border-[1.5px] rounded-lg hover:bg-white hover:text-secondary"
+          onClick={modalOpen}
+        >
+          <FaPlus />
           Add New Pet
-        </Button>
+        </button>
       </div>
       <PetDataWithFilter />
     </>

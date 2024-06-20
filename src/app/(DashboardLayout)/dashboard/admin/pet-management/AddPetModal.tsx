@@ -1,6 +1,7 @@
 import { useAddPetMutation } from "@/redux/features/pets/pets.api";
 import { TPet } from "@/types/pets.type";
-import { Col, Form, Input, Modal, Row, Select } from "antd";
+import { Col, Form, Input, Modal, Row, Select, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import React, { Dispatch } from "react";
 import { toast } from "sonner";
 
@@ -13,6 +14,7 @@ export type TPetInventoryProps = {
 const AddPetModal = ({ open, setOpen }: TPetInventoryProps) => {
   const [addPet] = useAddPetMutation();
   const [form] = Form.useForm();
+  const imagebbApiKey = "ead29cbef0bff96497069a3c95ca92e7";
 
   const onSubmit = async (data: TPet) => {
     const tostId = toast.loading("Pet Adding...");
@@ -21,6 +23,11 @@ const AddPetModal = ({ open, setOpen }: TPetInventoryProps) => {
     data.age = Number(data.age);
 
     try {
+      const photoUrl = await uploadImageToImageBB(
+        (data.photo[0] as any).originFileObj
+      );
+      data.photo = photoUrl;
+
       const res = await addPet(data).unwrap();
 
       res && toast.success("Pet Added", { id: tostId, duration: 2000 });
@@ -28,6 +35,26 @@ const AddPetModal = ({ open, setOpen }: TPetInventoryProps) => {
       setOpen(false);
     } catch (error) {
       toast.error("something went wrong", { id: tostId, duration: 2000 });
+    }
+  };
+
+  const uploadImageToImageBB = async (file: any) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const response = await fetch(
+      `https://api.imgbb.com/1/upload?key=${imagebbApiKey}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const result = await response.json();
+    if (result.success) {
+      return result.data.url;
+    } else {
+      throw new Error("Image upload failed");
     }
   };
 
@@ -64,16 +91,26 @@ const AddPetModal = ({ open, setOpen }: TPetInventoryProps) => {
               <Col span={24}>
                 <Form.Item
                   name="photo"
-                  label="Photo URL"
-                  rules={[
-                    { required: true, message: "Please enter the photo URL" },
-                  ]}
+                  label="Photo"
+                  rules={[{ required: true, message: "Please upload a photo" }]}
+                  valuePropName="fileList"
+                  getValueFromEvent={(e) => e.fileList}
                 >
-                  <Input
-                    placeholder="Enter Photo URL"
-                    autoComplete="off"
-                    className="h-10 border border-[#C4CAD4] rounded-lg"
-                  />
+                  <Upload
+                    name="photo"
+                    listType="picture"
+                    maxCount={1}
+                    beforeUpload={() => false}
+                    style={{ width: "100%" }}
+                    // className="!flex items-center !w-full"
+                  >
+                    <button
+                      style={{ width: "100%" }}
+                      className="h-10 border px-[290px] border-[#C4CAD4] rounded-lg "
+                    >
+                      <UploadOutlined /> Click to upload
+                    </button>
+                  </Upload>
                 </Form.Item>
               </Col>
             </Row>

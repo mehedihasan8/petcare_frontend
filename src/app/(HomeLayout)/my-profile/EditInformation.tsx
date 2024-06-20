@@ -1,5 +1,7 @@
+"use client";
 import { useUpdateUserInformationMutation } from "@/redux/features/user/user.api";
 import { Col, Form, Input, Row } from "antd";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export type TEditInformation = {
@@ -19,29 +21,32 @@ export type TUserInformation = {
 
 const EditInformation = ({ user }: { user: TUserInformation }) => {
   const [updateUserInformation] = useUpdateUserInformationMutation();
-
-  // const defaultValue = {
-  //   name: user?.name,
-  //   email: user?.email,
-  // };
+  const [email, setEmail] = useState("");
 
   const handelPasswordChange = async (data: TEditInformation) => {
     const toastId = await toast.loading("Information changing...");
 
+    console.log("data Information---=>", data);
+
     try {
-      const editedInformation = {
+      let editedInformation: Record<string, string> = {
         name: data?.name || user?.name,
-        email: data?.email || user?.email,
       };
 
-      console.log("Information changed --=>", editedInformation);
+      if (email) {
+        editedInformation.email = data?.email;
+      }
+
+      console.log("email onchange---=>", email);
+
+      console.log("editedInformation --=>", editedInformation);
 
       const res = await updateUserInformation(editedInformation).unwrap();
-
-      console.log("Information changed res--=>", res);
+      setEmail("");
       await toast.success("Information change successfully!", { id: toastId });
     } catch (error: any) {
-      toast.error(error?.data?.errorDetails?.error, { id: toastId });
+      console.log("data Information error---=>", error);
+      toast.error(error?.data?.message, { id: toastId });
     }
   };
 
@@ -70,6 +75,7 @@ const EditInformation = ({ user }: { user: TUserInformation }) => {
               <Col span={24}>
                 <Form.Item name="email" label="Email">
                   <Input
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter Email"
                     autoComplete="off"
                     className="h-10 border border-[#C4CAD4] rounded-lg"

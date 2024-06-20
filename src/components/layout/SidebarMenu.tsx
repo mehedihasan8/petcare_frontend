@@ -68,13 +68,13 @@ const customer = [
     icon: <TbHexagonPlusFilled className="w-5 h-5 !text-secondary" />,
     label: (
       <Link className="text-base " href={"/dashboard/customer/pet-adaption"}>
-        Adaption Request
+        Add Adaption Request
       </Link>
     ),
   },
   {
     key: 3,
-    icon: <TbHexagonPlusFilled className="w-5 h-5 !text-secondary" />,
+    icon: <RiGitPullRequestFill className="w-5 h-5 !text-secondary" />,
     label: (
       <Link className="text-base " href={"/dashboard/customer/my-adaption"}>
         My Adaption Request

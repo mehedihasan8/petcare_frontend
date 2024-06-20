@@ -39,6 +39,8 @@ const adaptionApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+
+      providesTags: ["adaption"],
     }),
 
     addAdaptionRequest: builder.mutation({

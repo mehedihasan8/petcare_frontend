@@ -32,9 +32,7 @@ const SettingAdmin = () => {
   return (
     <div className="px-4 pt-2">
       <div className="flex items-center justify-center border-b-2 pb-4">
-        <h2 className="text-2xl font-semibold text-center">
-          Personal Information
-        </h2>
+        <h2 className="text-2xl font-bold text-center">Personal Information</h2>
       </div>
       <div className="mt-5 pr-10">
         <Tabs defaultActiveKey="1" type="card" items={items} />

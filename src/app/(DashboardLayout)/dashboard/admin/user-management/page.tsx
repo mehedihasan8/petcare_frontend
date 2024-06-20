@@ -6,6 +6,7 @@ import {
 } from "@/redux/features/user/userMangement.api";
 import { Dropdown, Image, MenuProps, Space, Table, TableProps } from "antd";
 import React from "react";
+import { IoIosArrowDown } from "react-icons/io";
 import { toast } from "sonner";
 
 const UserManagement = () => {
@@ -46,7 +47,7 @@ const UserManagement = () => {
   const statusItems: MenuProps["items"] = [
     {
       label: (
-        <div className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
+        <div className="capitalize text-xs font-medium text-secondary">
           <span
             className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 bg-teal-600`}
           ></span>
@@ -57,7 +58,7 @@ const UserManagement = () => {
     },
     {
       label: (
-        <span className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
+        <span className="capitalize text-xs font-medium text-secondary">
           <span
             className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 bg-red-500`}
           ></span>
@@ -71,7 +72,7 @@ const UserManagement = () => {
   const roleItems: MenuProps["items"] = [
     {
       label: (
-        <div className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
+        <div className="capitalize text-xs font-medium text-secondary">
           <span
             className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 bg-primary`}
           ></span>
@@ -82,7 +83,7 @@ const UserManagement = () => {
     },
     {
       label: (
-        <span className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
+        <span className="capitalize text-xs font-medium text-secondary">
           <span
             className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 bg-secondary`}
           ></span>
@@ -121,17 +122,23 @@ const UserManagement = () => {
               items: statusItems,
               onClick: (data) => handleUpdateStatus(data, record?.id),
             }}
-            trigger={["click"]}
+            trigger={["hover"]}
           >
             <a onClick={(e) => e.preventDefault()}>
-              <span className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
-                <span
-                  className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 ${
-                    record?.status === "ACTIVATE" ? "bg-teal-600" : "bg-red-500"
-                  }`}
-                ></span>
-                {record?.status}
-              </span>
+              <div className="flex items-center justify-between border border-[#E1E4EA] rounded-md py-1 px-2 capitalize text-xs font-medium text-secondary max-w-40">
+                <div>
+                  <span
+                    className={`w-2 h-2 rounded-full inline-block mr-2 ${
+                      record?.status === "ACTIVATE"
+                        ? "bg-teal-600"
+                        : "bg-red-500"
+                    }`}
+                  ></span>
+                  {record?.status}
+                </div>
+
+                <IoIosArrowDown />
+              </div>
             </a>
           </Dropdown>
         );
@@ -147,17 +154,21 @@ const UserManagement = () => {
               items: roleItems,
               onClick: (data) => handleUpdateRole(data, record?.id),
             }}
-            trigger={["click"]}
+            trigger={["hover"]}
           >
             <a onClick={(e) => e.preventDefault()}>
-              <span className="border border-[#E1E4EA] rounded-md py-0.5 px-2 capitalize text-xs font-medium text-secondary">
-                <span
-                  className={`w-1.5 h-1.5 rounded-full inline-block mr-1 mb-0.5 ${
-                    record?.role === "ADMIN" ? "bg-primary" : "bg-secondary"
-                  }`}
-                ></span>
-                {record?.role}
-              </span>
+              <div className="max-w-40 flex items-center justify-between border border-[#E1E4EA] rounded-md py-1 px-2 capitalize text-xs font-medium text-secondary">
+                <div>
+                  <span
+                    className={`w-2 h-2 rounded-full inline-block mr-2  ${
+                      record?.role === "ADMIN" ? "bg-primary" : "bg-secondary"
+                    }`}
+                  ></span>
+                  {record?.role}
+                </div>
+
+                <IoIosArrowDown />
+              </div>
             </a>
           </Dropdown>
         );
@@ -167,7 +178,7 @@ const UserManagement = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold border-b-2 mb-4 text-center py-2">
+      <h2 className="text-2xl font-bold border-b-2 mb-4 text-center py-4">
         User Management
       </h2>
       <Table
