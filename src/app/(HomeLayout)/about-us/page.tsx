@@ -9,7 +9,7 @@ import { Image } from "antd";
 const AboutUs = () => {
   return (
     <div
-      className=""
+      className="relative min-h-screen mx-w-[1100p] mx-auto"
       style={{
         // backgroundColor: "red",
         backgroundImage:
@@ -20,12 +20,12 @@ const AboutUs = () => {
       }}
     >
       <section
-        className="h-[calc(100vh-152px)] relative bg-cover bg-center"
+        className="h-[calc(100vh-152px)] min-h-[70vh] bg-center bg-cover"
         style={{
           backgroundImage: `url(${defaultBgImage.src})`,
         }}
       >
-        <div className="w-[600px] absolute top-1/4 right-[10%]">
+        {/* <div className="w-[600px] absolute top-1/4 right-[10%]">
           <h2 className="text-4xl font-bold capitalize text-right text-primary">
             Introducing our new small dog daycare & partnership with st.
             <br />
@@ -35,11 +35,19 @@ const AboutUs = () => {
             <button className="font-semibold text-sm">All Pets</button>
             <BsArrowRight />
           </div>
+        </div> */}
+
+        <div className="absolute top-[400px] right-0 bg-secondary bg-cardBackground w-[65%] rounded-l-md pl-20 pr-5 py-8">
+          <h2 className="text-white text-4xl font-bold mb-2">About Us</h2>
+          <p className="text-white">
+            Introducing our new small dog daycare & partnership with st. Francis
+            house
+          </p>
         </div>
       </section>
       <section className="py-10 md:py-16 lg:py-24">
         <div className="w-[800px] mx-auto">
-          <h2 className="text-4xl font-bold capitalize text-center text-primary">
+          <h2 className="text-4xl font-bold capitalize text-center text-primary mt-20">
             Welcome to The Urban Hound
           </h2>
           <p className="text-center text-lg mt-3">

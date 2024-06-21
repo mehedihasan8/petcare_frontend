@@ -22,19 +22,23 @@ const DashboardHome = () => {
       <Row gutter={16}>
         <Col span={8}>
           <Card title="Total Adoption Requests" bordered={false}>
-            <p className="text-2xl font-bold">
+            <p className="text-2xl font-bold text-primary">
               {data?.data?.totalAdoptionRequest}
             </p>
           </Card>
         </Col>
         <Col span={8}>
           <Card title="Total Pets" bordered={false}>
-            <p className="text-2xl font-bold">{data?.data?.totalPet}</p>
+            <p className="text-2xl font-bold text-primary">
+              {data?.data?.totalPet}
+            </p>
           </Card>
         </Col>
         <Col span={8}>
           <Card title="Total Users" bordered={false}>
-            <p className="text-2xl font-bold">{data?.data?.totalUser}</p>
+            <p className="text-2xl font-bold text-primary">
+              {data?.data?.totalUser}
+            </p>
           </Card>
         </Col>
       </Row>

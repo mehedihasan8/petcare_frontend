@@ -16,6 +16,7 @@ const config: Config = {
     },
     backgroundImage: {
       heroBackground: "url(/petcare-photo.jpg)",
+      allPetsBackground: "url(/all-pets.png)",
       cardBackground:
         "radial-gradient(ellipse at top left,#324560,transparent 90%)",
     },

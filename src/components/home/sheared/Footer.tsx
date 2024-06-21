@@ -6,8 +6,8 @@ const Footer = () => {
   return (
     <div>
       <footer>
-        <div className="border-t bg-slate-50">
-          <div className="container px-5 mx-auto">
+        <div className=" border-t bg-slate-50">
+          <div className="max-w-[1100px] mx-auto">
             <div className="-mx-4 flex flex-wrap justify-between">
               <div className="px-4 my-4 w-full xl:w-1/5">
                 <Link href="/">
@@ -160,7 +160,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="bg-secondary py-4 text-gray-100">
-          <div className="container mx-auto px-4">
+          <div className="max-w-[1100px] mx-auto">
             <div className="-mx-4 flex flex-wrap justify-between">
               <div className="px-4 w-full text-center sm:w-auto sm:text-left">
                 Copyright © 2024 Trip Buddy. All Rights Reserved.

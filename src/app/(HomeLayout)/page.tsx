@@ -1,3 +1,4 @@
+import FamousPets from "@/components/home/homePage/FamousPets";
 import Pets from "@/components/home/homePage/Pets";
 import React from "react";
 
@@ -6,7 +7,7 @@ const Home = () => {
     <div>
       <div className="relative min-h-screen">
         <div className="bg-heroBackground min-h-[80vh] bg-center bg-cover">
-          <div className="absolute bottom-0 left-0 bg-secondary bg-cardBackground w-[60%] rounded-r-md px-5 py-8">
+          <div className="absolute bottom-0 left-0 bg-secondary bg-cardBackground w-[65%] rounded-r-md pl-20 pr-5 py-8">
             <h2 className="text-white text-4xl font-bold mb-2">Petcare</h2>
             <p className="text-white">
               The bond between people and pets is as old as humanity itself, but
@@ -18,7 +19,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Pets />
+      <FamousPets />
     </div>
   );
 };

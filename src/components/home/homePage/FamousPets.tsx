@@ -1,33 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import PetCard from "./PetCard";
-
-import SearchPets from "./SearchPets";
 import { useGetAllPetsQuery } from "@/redux/features/pets/pets.api";
 import { TPet } from "@/types/pets.type";
-import { TQueryParam } from "@/types/global.type";
+import { Spin } from "antd";
+import PetCard from "./PetCard";
 import { ImFileEmpty } from "react-icons/im";
-import { Pagination, Spin } from "antd";
 
-const Pets = () => {
-  const [params, setParams] = useState<TQueryParam[]>([
+const FamousPets = () => {
+  const { data, isFetching } = useGetAllPetsQuery([
     { name: "limit", value: 9 },
   ]);
-  const { data, isFetching } = useGetAllPetsQuery(params);
-
   const pets: TPet[] = data?.data?.data;
-  const meta = data?.data?.meta;
-
-  const handlePaginationChange = (page: number) => {
-    setParams((prevParams) => [
-      ...prevParams.filter((param) => param.name !== "page"),
-      { name: "page", value: page },
-    ]);
-  };
 
   return (
-    <div className="max-w-[1100px] mx-auto py-10 md:pb-20">
-      <SearchPets setParams={setParams} />
+    <div className="max-w-[1100px] mx-auto py-10 md:py-20">
+      <h2 className="text-4xl font-bold text-center">Our Famous Pets</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6 mt-10">
         {isFetching ? (
           <div className="col-span-full flex items-center justify-center">
@@ -45,16 +31,8 @@ const Pets = () => {
           </>
         )}
       </div>
-      <div className="flex items-center justify-center pt-5">
-        <Pagination
-          onChange={handlePaginationChange}
-          defaultCurrent={1}
-          pageSize={meta?.limit}
-          total={meta?.total}
-        />
-      </div>
     </div>
   );
 };
 
-export default Pets;
+export default FamousPets;

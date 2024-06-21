@@ -57,46 +57,52 @@ const UserManagement = () => {
 
   const adaptionColumn: TableProps<any>["columns"] = [
     {
-      title: "Name",
-      key: "name",
+      title: "User Name",
+      key: "username",
       render: (record) => (
         <div className="flex items-center gap-2 ">
           <Image
             className="!w-12 !h-12 rounded-full"
-            src={record?.pet?.photo}
+            src={record?.user?.photo}
             alt="image"
           />
           <div>
-            <h4 className="font-medium">{record?.pet?.name}</h4>
-            <p className="line-clamp-1">{record?.pet?.breed}</p>
+            <h4 className="font-medium">{record?.user?.name}</h4>
+            <p className="line-clamp-1">{record?.user?.email}</p>
           </div>
         </div>
       ),
     },
     {
-      title: "Age",
-      key: "age",
-      render: (record) => <p className="">{record?.pet?.age}</p>,
+      title: "Pet Name",
+      key: "name",
+      render: (record) => (
+        <div className="flex items-center gap-2 ">
+          <Image
+            className="!w-10 !h-10 rounded-md"
+            src={record?.pet?.photo}
+            alt="image"
+          />
+          <div>
+            <h4 className="font-medium">{record?.pet?.name}</h4>
+          </div>
+        </div>
+      ),
     },
     {
-      title: "Species",
+      title: "Pet Breed",
+      key: "breed",
+      render: (record) => <p className="">{record?.pet?.breed}</p>,
+    },
+    {
+      title: "Pet Species",
       key: "species",
       render: (record) => <p className="">{record?.pet?.species}</p>,
     },
     {
-      title: "Size",
-      key: "size",
-      render: (record) => <p className="">{record?.pet?.size}</p>,
-    },
-    {
-      title: "Temperament",
-      key: "temperament",
-      render: (record) => <p className="">{record?.pet?.temperament}</p>,
-    },
-    {
-      title: "Gender",
-      key: "gender",
-      render: (record) => <p className="">{record?.pet?.gender}</p>,
+      title: "Pet Age",
+      key: "age",
+      render: (record) => <p className="">{record?.pet?.age}</p>,
     },
     {
       title: "Status",
